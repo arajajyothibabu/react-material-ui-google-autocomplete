@@ -1,0 +1,42 @@
+{
+  "name": "react-material-ui-google-autocomplete",
+  "version": "1.0.0",
+  "description": "A React MaterialUI component with google AutoComplete SuggestQueries Edit",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arajajyothibabu/react-material-ui-google-autocomplete.git"
+  },
+  "keywords": [
+    "react",
+    "light",
+    "weight",
+    "simple",
+    "javascript",
+    "material-ui",
+    "auto-complete"
+  ],
+  "author": "Jyothi Babu Araja",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arajajyothibabu/react-material-ui-google-autocomplete/issues"
+  },
+  "homepage": "https://github.com/arajajyothibabu/rreact-material-ui-google-autocomplete#readme",
+  "dependencies": {
+    "material-ui": "^0.17.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0"
+  }
+}
