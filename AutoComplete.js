@@ -30,6 +30,7 @@ const iconStyles = {
     background: 'white'
 };
 
+
 export default class GoogleAutoComplete extends React.Component{
 
     constructor(props){
@@ -99,8 +100,8 @@ export default class GoogleAutoComplete extends React.Component{
                     />
                 </div>
                 <div style={searchButtonStyles}>
-                    <IconButton primary={true} onClick={() => this.handleSelectInput.bind(this, input)} >
-                        <SearchIcon style={iconStyles} color={white} hoverColor={darkWhite}/>
+                    <IconButton primary={true} >
+                        <SearchIcon style={iconStyles} color={white} hoverColor={darkWhite} onClick={() => this.handleSelectInput.bind(this, input)}/>
                     </IconButton>
                 </div>
                 <div style={clearFix}></div>
