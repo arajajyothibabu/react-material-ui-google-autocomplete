@@ -18,15 +18,17 @@ export default class GoogleAutoComplete extends React.Component{
 
     constructor(props){
         super(props);
+        this.state = {
+            dataSource: ["dfefffdfew", "fefefefwef", "fefewgvwdfwewe"]
+        }
     }
 
     render(){
         return(
             <AutoComplete
-                hintText="Type anything"
+                hintText="Search YouTube.."
                 dataSource={this.state.dataSource}
                 onUpdateInput={this.handleUpdateInput}
-                floatingLabelText="Full width"
                 fullWidth={true}
             />
         )
