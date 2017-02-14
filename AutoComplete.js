@@ -35,6 +35,7 @@ export default class GoogleAutoComplete extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            input: "",
             dataSource: [] //contains data for search
         };
         this.defaultAPI = "https://suggestqueries.google.com/complete/search?hl=en&ds=yt&hjson=t&cp=1&format=5&alt=json&callback=?"
@@ -64,6 +65,7 @@ export default class GoogleAutoComplete extends React.Component{
      * @param input
      */
     handleUpdateInput(input){
+        this.setState({input: input});
         const url = `${this.api}&q=${input}`;
         let _this = this;
         $.ajax({
@@ -77,8 +79,14 @@ export default class GoogleAutoComplete extends React.Component{
         });
     }
 
+    handleSelectInput(inputText, index){
+        console.log("Input Selected", inputText, index);
+        //TODO:
+    }
+
     render(){
         const {hintText} = this.props;
+        const {input} = this.state;
         return(
             <div>
                 <div style={searchBoxStyles}>
@@ -87,10 +95,11 @@ export default class GoogleAutoComplete extends React.Component{
                         dataSource={this.state.dataSource}
                         onUpdateInput={this.handleUpdateInput.bind(this)}
                         fullWidth={true}
+                        onNewRequest={this.handleSelectInput.bind(this)}
                     />
                 </div>
                 <div style={searchButtonStyles}>
-                    <IconButton primary={true} >
+                    <IconButton primary={true} onClick={() => this.handleSelectInput.bind(this, input)} >
                         <SearchIcon style={iconStyles} color={white} hoverColor={darkWhite}/>
                     </IconButton>
                 </div>
