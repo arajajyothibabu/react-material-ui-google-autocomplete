@@ -4,9 +4,9 @@
 import React, {Component, PropTypes} from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 import IconButton from 'material-ui/IconButton';
-import axios from 'axios';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import {white, darkWhite} from 'material-ui/styles/colors';
+import $ from 'jquery';
 
 const searchBoxStyles = {
     width: "80%",
@@ -35,29 +35,46 @@ export default class GoogleAutoComplete extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            dataSource: ["dfefffdfew", "fefefefwef", "fefewgvwdfwewe"]
+            dataSource: [] //contains data for search
         };
         this.defaultAPI = "https://suggestqueries.google.com/complete/search?hl=en&ds=yt&hjson=t&cp=1&format=5&alt=json&callback=?"
         this.api = '';
+        this.updateAPI(this.props); //updates API
     }
 
-    updateAPI(props){
+    /**
+     * need to update API if sent dynamically
+     * @param nextProps
+     */
+    componentWillReceiveProps(nextProps){
+        this.updateAPI(nextProps);
+    }
+
+    /**
+     * Updates api with apiKey and client, if needed api also
+     * @param props
+     */
+    updateAPI(props){ //updates the api
         const {api, apiKey, client} = props;
         this.api = api || `${this.defaultAPI}&client=${client || "youtube"}&key=${apiKey}`;
     }
 
+    /**
+     * On entering each letter updates the data source with entered key word
+     * @param input
+     */
     handleUpdateInput(input){
         const url = `${this.api}&q=${input}`;
-        axios.get(url)
-            .then(function (response) {
-                console.log(response);
-                this.setState({
-                    dataSource: response[1].map(item => item[0])
+        let _this = this;
+        $.ajax({
+            url: url,
+            dataType: 'jsonp',
+            success: function(data, textStatus, request) {
+                _this.setState({
+                    dataSource: data[1].map(item => item[0])
                 });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            }
+        });
     }
 
     render(){
